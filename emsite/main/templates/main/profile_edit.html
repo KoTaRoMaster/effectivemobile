@@ -1,0 +1,30 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}
+Редактирование профиля
+{% endblock %}
+
+{% block content %}
+<div class="login-container">
+    <h2>Редактирование профиля</h2>
+    <form method="post" class="login-form">
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="form-group">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                {% if field.errors %}
+                    {% for error in field.errors %}
+                        <p class="login-error">{{ error }}</p>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        {% endfor %}
+        <button type="submit" class="login-btn">Сохранить</button>
+    </form>
+
+    <div class="register-link">
+        <p><a href="{% url 'main:profile' %}">Вернуться в профиль</a></p>
+    </div>
+</div>
+{% endblock %}

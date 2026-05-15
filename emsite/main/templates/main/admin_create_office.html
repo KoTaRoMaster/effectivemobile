@@ -1,0 +1,64 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}
+Создание офиса
+{% endblock %}
+
+{% block content %}
+
+<div class="admin-edit-container">
+
+    <div class="admin-edit-card">
+
+        <h2 class="admin-edit-title">
+            Создание офиса
+        </h2>
+
+        <form method="post" class="admin-edit-form">
+
+            {% csrf_token %}
+
+            <div class="admin-form-group">
+                <label>Название</label>
+                {{ form.name }}
+            </div>
+
+            <div class="admin-form-group">
+                <label>Адрес</label>
+                {{ form.address }}
+            </div>
+
+            <div class="admin-time-row">
+
+                <div class="admin-form-group">
+                    <label>С</label>
+                    {{ form.time_work_from }}
+                </div>
+
+                <div class="admin-form-group">
+                    <label>До</label>
+                    {{ form.time_work_to }}
+                </div>
+
+            </div>
+
+            <div class="admin-edit-actions">
+
+                <button type="submit" class="admin-save-btn">
+                    Создать
+                </button>
+
+                <a href="{% url 'main:admin' %}"
+                   class="admin-cancel-link">
+                    Отмена
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,81 @@
+<div class="admin-table-wrapper"
+
+     data-type="staff"
+
+     data-edit-url="/admin/edit-staff/"
+
+     data-delete-url="/admin/delete-staff/">
+
+    <table class="admin-table">
+
+        <thead>
+
+        <tr>
+            <th>ID</th>
+            <th>Пользователь</th>
+            <th>Офисы</th>
+        </tr>
+
+        </thead>
+
+        <tbody>
+
+        {% for staff in staff_members %}
+
+        <tr data-id="{{ staff.id }}">
+
+            <td>{{ staff.id }}</td>
+
+            <td>{{ staff.user.username }}</td>
+
+            <td>
+
+                {% for office in staff.offices.all %}
+
+                    {{ office.name }}<br>
+
+                {% endfor %}
+
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+
+
+    <!-- КНОПКИ -->
+
+    <div class="admin-actions">
+
+        <a href="{% url 'main:admin_create_staff' %}"
+           class="admin-add-btn">
+
+            <i class="fa-solid fa-plus"></i>
+
+            Добавить
+
+        </a>
+
+        <button class="admin-edit-btn">
+
+            <i class="fa-solid fa-pen"></i>
+
+            Редактировать
+
+        </button>
+
+        <button class="admin-delete-btn">
+
+            <i class="fa-solid fa-trash"></i>
+
+            Удалить
+
+        </button>
+
+    </div>
+
+</div>

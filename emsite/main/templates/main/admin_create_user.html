@@ -1,0 +1,78 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}
+Создание пользователя
+{% endblock %}
+
+{% block content %}
+
+<div class="login-container">
+
+    <div class="login-form">
+
+        <h2>Создание пользователя</h2>
+
+        <form method="post">
+
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label>Логин</label>
+                {{ form.username }}
+            </div>
+
+            <div class="form-group">
+                <label>Почта</label>
+                {{ form.email }}
+            </div>
+
+            <div class="form-group">
+                <label>Имя</label>
+                {{ form.first_name }}
+            </div>
+
+            <div class="form-group">
+                <label>Фамилия</label>
+                {{ form.last_name }}
+            </div>
+
+            <div class="form-group">
+                <label>Отчество</label>
+                {{ form.second_name }}
+            </div>
+
+            <div class="form-group">
+                <label>Пароль</label>
+                {{ form.password1 }}
+            </div>
+
+            <div class="form-group">
+                <label>Подтверждение пароля</label>
+                {{ form.password2 }}
+            </div>
+
+            <div class="admin-checkbox-group">
+
+                <div class="admin-checkbox">
+                    {{ form.is_staff }}
+                    <label>Персонал</label>
+                </div>
+
+                <div class="admin-checkbox">
+                    {{ form.is_superuser }}
+                    <label>Администратор</label>
+                </div>
+
+            </div>
+
+            <button type="submit" class="login-btn">
+                Создать
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

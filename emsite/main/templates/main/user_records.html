@@ -1,0 +1,64 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}
+Мои записи
+{% endblock %}
+
+{% block content %}
+<div class="records-wrapper">
+
+    {% for office in offices %}
+
+        <div class="records-office-card">
+
+            <div class="records-office-title">
+                {{ office }}
+            </div>
+
+            <div class="records-days-list">
+
+                {% for day in days %}
+
+                    {% if day.office == office %}
+
+                        <div class="record-day-card">
+
+                            <div class="record-day-header">
+                                {{ day.date }}
+                            </div>
+
+                            <div class="record-slots-grid">
+
+                                {% for schedule in schedules %}
+
+                                    {% if schedule in day.schedule_set.all %}
+
+                                        <div class="record-slot">
+
+                                            <div class="record-slot-time">
+                                                {{ schedule.from_time }} - {{ schedule.to_time }}
+                                            </div>
+
+                                        </div>
+
+                                    {% endif %}
+
+                                {% endfor %}
+
+                            </div>
+
+                        </div>
+
+                    {% endif %}
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}

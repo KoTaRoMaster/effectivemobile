@@ -1,0 +1,49 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}
+Редактирование персонала
+{% endblock %}
+
+{% block content %}
+
+<div class="admin-edit-container">
+
+    <div class="admin-edit-card">
+
+        <h2 class="admin-edit-title">
+            Редактирование персонала
+        </h2>
+
+        <form method="post" class="admin-edit-form">
+
+            {% csrf_token %}
+
+            <div class="admin-form-group">
+                <label>Пользователь</label>
+                {{ form.user }}
+            </div>
+
+            <div class="admin-form-group">
+                <label>Офисы</label>
+                {{ form.offices }}
+            </div>
+
+            <div class="admin-edit-actions">
+
+                <button type="submit" class="admin-save-btn">
+                    Сохранить
+                </button>
+
+                <a href="{% url 'main:admin' %}" class="admin-cancel-link">
+                    Отмена
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

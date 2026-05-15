@@ -1,0 +1,80 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+
+{% block title %}
+Админ панель
+{% endblock %}
+
+{% block content %}
+
+<div class="admin-wrapper">
+
+    <div class="admin-card">
+
+        <!-- ТАБЫ -->
+
+        <div class="admin-tabs">
+
+            <div
+                    class="admin-tab active"
+                    hx-get="{% url 'main:admin_users' %}"
+                    hx-target="#admin-content"
+                    hx-swap="innerHTML"
+            >
+                Пользователи
+            </div>
+
+            <div
+                    class="admin-tab"
+                    hx-get="{% url 'main:admin_offices' %}"
+                    hx-target="#admin-content"
+                    hx-swap="innerHTML"
+            >
+                Офисы
+            </div>
+
+            <div
+                    class="admin-tab"
+                    hx-get="{% url 'main:admin_staff' %}"
+                    hx-target="#admin-content"
+                    hx-swap="innerHTML"
+            >
+                Персонал
+            </div>
+
+        </div>
+
+
+        <!-- КОНТЕНТ -->
+
+        <div id="admin-content">
+
+            {% include 'main/admin/users_table.html' %}
+
+        </div>
+
+
+        <!-- ПОДТВЕРЖДЕНИЕ -->
+
+        <div class="admin-confirm-actions hidden">
+
+            <button class="admin-confirm-btn">
+                Подтвердить
+            </button>
+
+            <button class="admin-cancel-btn">
+                Отмена
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- JS -->
+
+<script src="{% static 'main/js/admin.js' %}"></script>
+
+{% endblock %}

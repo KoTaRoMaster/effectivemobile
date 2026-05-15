@@ -1,0 +1,63 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+{% block title %}
+Записи
+{% endblock %}
+
+
+{% block content %}
+<form method="post" class="record-form">
+    {% csrf_token %}
+    <div class="staff-container">
+        <div class="time-card">
+            <div class="week-header">
+                {{ office.name }} {{ day.date }}
+            </div>
+
+            <!-- Таблица с временными слотами -->
+            <div class="time-slots-grid">
+                {% for schedule in day.schedule_set.all %}
+
+                <div
+                        class="time-slot {% if schedule.user %} booked {% endif %}"
+                        data-id="{{ schedule.id }}"
+                >
+
+            <span class="time-label">
+                {{ schedule.from_time }} - {{ schedule.to_time }}
+            </span>
+
+                    {% if schedule.user %}
+                    <span class="slot-status">
+                    Занято
+                </span>
+                    {% endif %}
+                </div>
+
+                {% endfor %}
+            </div>
+
+            <input type="hidden" name="selected_slots" id="selected_slots">
+
+            <!-- Кнопка Назад -->
+            <div class="action-panel">
+                <a href="{% url 'main:records' %}" class="action-btn back-btn">
+                    ← Назад
+                </a>
+
+                <button type="button" id="cancelSelection" class="action-btn cancel-btn">
+                    Отмена
+                </button>
+
+                <button type="submit" class="action-btn submit-btn">
+                    Забронировать
+                </button>
+
+            </div>
+        </div>
+    </div>
+</form>
+<script src="{% static 'main\js\edit_records.js'%}"></script>
+{% static 'main/js/edit_records.js'%}
+{% endblock %}
+

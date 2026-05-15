@@ -1,0 +1,112 @@
+<div class="admin-table-wrapper"
+
+     data-type="users"
+
+     data-edit-url="/admin/edit-user/"
+
+     data-delete-url="/admin/delete-users/">
+
+    <table class="admin-table">
+
+        <thead>
+
+        <tr>
+            <th>ID</th>
+            <th>Логин</th>
+            <th>Почта</th>
+            <th>Имя</th>
+            <th>Фамилия</th>
+            <th>Отчество</th>
+            <th>Дата регистрации</th>
+            <th>Персонал</th>
+            <th>Админ</th>
+            <th>Активность</th>
+        </tr>
+
+        </thead>
+
+        <tbody>
+
+        {% for user in users %}
+
+        <tr data-id="{{ user.id }}">
+
+            <td>{{ user.id }}</td>
+
+            <td>{{ user.username }}</td>
+
+            <td>{{ user.email }}</td>
+
+            <td>{{ user.first_name }}</td>
+
+            <td>{{ user.last_name }}</td>
+
+            <td>{{ user.second_name }}</td>
+
+            <td>{{ user.date_joined|date:"d.m.Y" }}</td>
+
+            <td>
+                {% if user.is_staff %}
+                    ✓
+                {% else %}
+                    ✕
+                {% endif %}
+            </td>
+
+            <td>
+                {% if user.is_superuser %}
+                    ✓
+                {% else %}
+                    ✕
+                {% endif %}
+            </td>
+
+            <td class="is-active">
+                {% if user.is_active %}
+                    ✓
+                {% else %}
+                    ✕
+                {% endif %}
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+
+
+    <!-- КНОПКИ -->
+
+    <div class="admin-actions">
+
+        <a href="{% url 'main:admin_create_user' %}"
+           class="admin-add-btn">
+
+            <i class="fa-solid fa-plus"></i>
+
+            Добавить
+
+        </a>
+
+        <button class="admin-edit-btn">
+
+            <i class="fa-solid fa-pen"></i>
+
+            Редактировать
+
+        </button>
+
+        <button class="admin-delete-btn">
+
+            <i class="fa-solid fa-trash"></i>
+
+            Удалить
+
+        </button>
+
+    </div>
+
+</div>

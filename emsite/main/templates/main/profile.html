@@ -1,0 +1,60 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}
+    Профиль
+{% endblock %}
+
+{% block content %}
+<div class="login-container">
+    <h2>Профиль</h2>
+    <div class="profile-card">
+        <div class="profile-row">
+            <span class="profile-label">Логин</span>
+            <span class="profile-value">{{ user.username }}</span>
+        </div>
+        <div class="profile-row">
+            <span class="profile-label">Почта</span>
+            <span class="profile-value">{{ user.email }}</span>
+        </div>
+        <div class="profile-row">
+            <span class="profile-label">Имя</span>
+            <span class="profile-value">{{ user.first_name }}</span>
+        </div>
+        <div class="profile-row">
+            <span class="profile-label">Фамилия</span>
+            <span class="profile-value">{{ user.last_name }}</span>
+        </div>
+        <div class="profile-row">
+            <span class="profile-label">Отчество</span>
+            <span class="profile-value">{{ user.second_name }}</span>
+        </div>
+        <div class="profile-row">
+            <span class="profile-label">Дата регистрации</span>
+            <span class="profile-value">{{ user.date_joined|date:"d.m.Y" }}</span>
+        </div>
+        <div class="profile-row">
+            <span class="profile-label">Роль</span>
+            <span class="profile-value">{{ data.role }}</span>
+        </div>
+        {% if data.offices %}
+            <div class="profile-row">
+                <span class="profile-label">Офисы</span>
+                <span class="profile-value">
+                            {% for office in data.offices %}
+                                {{ office.name }}
+                            {% endfor %}
+                        </span>
+            </div>
+        {% endif %}
+        <div class="profile-actions">
+            <a href="{% url 'main:logout' %}" class="profile-logout-btn">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i> Выход
+            </a>
+
+            <a href="{% url 'main:profile_edit' %}" class="profile-edit-btn">
+                <i class="fa-solid fa-pen"></i> Редактировать
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

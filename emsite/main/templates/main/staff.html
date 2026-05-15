@@ -1,0 +1,32 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}
+Для персонала
+{% endblock %}
+
+{% block content %}
+    {% for office in offices %}
+        <div class="staff-container">
+            <div class="week-card-grid">
+                <div class="week-card">
+                    <div class="week-header">{{ office.name }}
+                    </div>
+                    <div class="days-grid">
+                        {% for day in office.day_set.all %}
+                        <div class="day-card">
+                            <div class="day-label">{{ day.date }} <span></span></div>
+                            <a href="{% url 'main:staff_edit' office_id=office.id data=day.date %}" class="day-box">
+                                <div>
+                                    <span class="work-label">Время работы:</span>
+                                    <span class="work-time">{{ day.from_time }} - {{ day.to_time }}</span>
+                                </div>
+                                <span class="book-link">Записаться</span>
+                            </a>
+                        </div>
+                    {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

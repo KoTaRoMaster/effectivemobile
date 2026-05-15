@@ -1,0 +1,36 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}
+   Вход в аккаунт
+{% endblock %}
+
+{% block content %}
+    <div class="login-container">
+        <h2>Авторизация</h2>
+        <form method="post" class="login-form">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="email">Почта</label>
+                <input type="text" id="email" name="email" required>
+                {% if error %}
+                    <p class="login-error">{{ error }}</p>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="password">Пароль</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit" class="login-btn">Войти</button>
+        </form>
+
+        <div class="register-link">
+            <p>Нет аккаунта?
+                <a href="{% url 'main:register' %}">Нажмите здесь, чтобы зарегистрироваться</a>
+            </p>
+        </div>
+
+        <div class="login-footer">
+            <a href="">Забыли пароль?</a>
+        </div>
+    </div>
+{% endblock %}
