@@ -194,11 +194,11 @@ return HttpResponseForbidden()
 
 ## Записи
 
-| Endpoint      | Доступ |
-|---------------|--------|
-| /records      | USER   |
-| /user_records | USER   |
-| /records_edit | STAFF  |
+| Endpoint       | Доступ |
+|----------------|--------|
+| /records       | USER   |
+| /user_records  | USER   |
+| /records_write | USER   |
 
 ---
 
