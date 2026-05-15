@@ -22,8 +22,9 @@
             <a href=""><li><i class="fa-solid fa-paper-plane"></i> Контакты</li></a>
             <a href="{% url 'main:about' %}"><li><i class="fa-solid fa-address-card"></i> О нас</li></a>
             <a href="{% url 'main:records'%}"><li><i class="fa-solid fa-calendar-days"></i> Записи</li></a>
-            <a href="{% url 'main:user_records'%}"><li><i class="fa-solid fa-calendar-days"></i> Мои записи</li></a>
-
+            {% if user.is_authenticated %}
+                <a href="{% url 'main:user_records'%}"><li><i class="fa-solid fa-calendar-days"></i> Мои записи</li></a>
+            {% endif %}
             {% if user.is_staff or user.is_superuser %}
                 <a href="{% url 'main:staff'%}"><li><i class="fa-solid fa-user-tie"></i> Для персонала</li></a>
             {% endif %}
