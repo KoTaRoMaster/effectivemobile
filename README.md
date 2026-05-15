@@ -308,26 +308,28 @@ python manage.py loaddata fixtures.json
 ## ADMIN
 
 ```text
-login: admin
-password: admin123
+email: admin1@example.com
+password: qwertyadmin
 ```
 
 ## STAFF
 
 ```text
-login: staff
-password: staff123
+email: staff1@example.com
+password: qwertystaff
 ```
 
 ## USER
 
 ```text
-login: user
-password: user123
+email: user1@exaample.com
+password: qwertyuser
 ```
 
+## DELETE STAFF
+```text
+email: deleteStaff@example.com
+password: qwertydelete
+```
 ---
 
-# Автор
-
-Студенческий backend-проект по реализации собственной системы аутентификации и авторизации на Django.
